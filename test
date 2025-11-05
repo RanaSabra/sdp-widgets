@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Restricted Widget</title>
+  <style>
+    body {
+      font-family: "Segoe UI", sans-serif;
+      direction: rtl;
+      background: #fafafa;
+      margin: 0;
+      padding: 20px;
+    }
+    #content {
+      display: none;
+      border: 1px solid #d9534f;
+      border-radius: 8px;
+      padding: 15px;
+      background: #fff;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    #notAllowed {
+      display: none;
+      color: gray;
+      font-style: italic;
+      text-align: center;
+      margin-top: 30px;
+    }
+  </style>
+</head>
+<body>
+  <div id="content">
+    <h2>مرحبًا بك!</h2>
+    <p>هذا المحتوى خاص بك كمستخدم مخوّل.</p>
+  </div>
+
+  <div id="notAllowed">
+    محتوى هذا الـ widget غير متاح لك.
+  </div>
+
+  <script>
+    const allowedUsers = [
+      "sabra.rana01@gmail.com",
+      "ali.ahmed@example.com",
+      "sara.hassan@example.com"
+    ];
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const currentUser = urlParams.get('user_email');
+
+    if (allowedUsers.includes(currentUser)) {
+      document.getElementById('content').style.display = 'block';
+    } else {
+      document.getElementById('notAllowed').style.display = 'block';
+    }
+  </script>
+</body>
+</html>
